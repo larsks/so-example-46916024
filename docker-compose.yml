@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  frontend:
+    image: httpd
+    volumes:
+      - ./frontend/httpd.conf:/usr/local/apache2/conf/httpd.conf
+
+  app1:
+    image: httpd
+    network_mode: "service:frontend"
+    volumes:
+      - ./app1/htdocs:/usr/local/apache2/htdocs
+      - ./app1/httpd.conf:/usr/local/apache2/conf/httpd.conf
+  app2:
+    image: httpd
+    network_mode: "service:frontend"
+    volumes:
+      - ./app2/htdocs:/usr/local/apache2/htdocs
+      - ./app2/httpd.conf:/usr/local/apache2/conf/httpd.conf
+  app3:
+    image: httpd
+    network_mode: "service:frontend"
+    volumes:
+      - ./app3/htdocs:/usr/local/apache2/htdocs
+      - ./app3/httpd.conf:/usr/local/apache2/conf/httpd.conf
